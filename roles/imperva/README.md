@@ -6,7 +6,9 @@ The Imperva role can be used to upgrade installed Imperva gateways and MXs.
 Requirements
 ------------
 
-You will need to have an active Imperva support contract to to download the required patches.
+You will need to have an active Imperva support contract to to download the required patches.  
+
+You will also need an ansible capable user created on each system (the default admin user will NOT work for this - it uses a restricted shell that ansible doesn't like.  See ansible-role-imperva-appliance/README.md for details and how to create.
 
 Role Variables
 --------------
