@@ -10,18 +10,20 @@ You will need to have an active Imperva support contract to to download the requ
 
 Role Variables
 --------------
-TBD
+See var/main.yml
 
 Dependencies
 ------------
+See ansible-role-imperva-appliance/extension/setup/python_requirements.txt
 
 Example Playbook
 ----------------
+See ansible-role-imperva-appliance/playbooks/common.yml
 
 License
 -------
 
-Imperva Community License
+MIT
 
 Author Information
 ------------------
