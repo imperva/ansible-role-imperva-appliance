@@ -1,0 +1,8 @@
+---
+- name: Imperva - Gather Inventory Host Information
+  include_tasks: gatherinfo.yml
+
+- name: Imperva - Patch to latest
+  include_tasks: patch.yml
+  when: patch
+

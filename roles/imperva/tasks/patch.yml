@@ -1,0 +1,42 @@
+ #Ensure there is a place for Imperva Downloads
+- name: Imperva binaries directory
+  file:
+    path: "{{ role_path }}/files/imperva_packages"
+    state: directory
+  delegate_to: 127.0.0.1
+  run_once: true
+  become: False
+
+- name: Checking for Expected Patch file
+  find:
+    paths: "{{ role_path }}/files/imperva_packages"
+    patterns: "{{expected_patch_file}}*"
+  delegate_to: 127.0.0.1
+  run_once: true
+  become: False
+
+- name: Ship Installers
+  block:
+  - name: verify /var/tmp exists
+    file:
+      path: "/var/tmp"
+      state: directory
+    
+  - name: Copy Agent Tarball
+    copy:
+      src: files/imperva_packages/{{ expected_patch_file }}
+      dest: "/var/tmp"
+      owner: root
+      group: root
+      mode:  0700
+
+  - name: Run installer
+    command: "/var/tmp/{{ expected_patch_file }}"
+    register: patch_output
+    vars:
+       ansible_command_timeout: "{{patch_timeout}}"
+  
+  - name: Parse for error or success
+    assert:
+      that: "'ERROR' not in '{{patch_output.stdout_lines[((patch_output.stdout_lines|length)-1)]}}'"
+      fail_msg: "There was a problem with the patch.  Please review output. {{patch_output.stdout}}"

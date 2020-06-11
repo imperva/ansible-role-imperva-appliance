@@ -1,0 +1,24 @@
+- name: "Ensure that free space on var is great than {{imperva_var_freespace_gb}}GB"
+  assert:
+    that: "item.size_available > ({{imperva_var_freespace_gb}}*1000|pow(3))"
+    quiet: yes
+    fail_msg: "installation requires more than {{imperva_var_freespace_gb}}GB of free space in /var.  Only {{(item.size_available/1000|pow(3)|round|int)}}GB available."
+  when: item.mount == "/var"
+  with_items: 
+    - "{{ ansible_mounts }}"
+
+- name: Gather SecureSphere version fact
+  command: "/opt/SecureSphere/etc/impctl/bin/impctl --version"
+  register: SeS_version_fact
+
+- name: Get SecureSphere version
+  set_fact:
+    SeS_version: "{{ SeS_version_fact.stdout}}"
+  when: SeS_version_fact.stdout is defined
+
+
+- name: Verify SecureSphere version up to date
+  assert:
+    that: "'{{SeS_version}}' not in '{{SeS_expected_patch_version}}'"
+    fail_msg: "Imperva appliance is already at version {{SeS_version}}"
+  # register: patch:True --set a patch value to trigger an patch task?
