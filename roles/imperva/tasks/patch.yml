@@ -40,3 +40,8 @@
     assert:
       that: "'ERROR' not in '{{patch_output.stdout_lines[((patch_output.stdout_lines|length)-1)]}}'"
       fail_msg: "There was a problem with the patch.  Please review output. {{patch_output.stdout}}"
+  
+  - name: Reboot if patch didn't fail
+    reboot: 
+      reboot_timeout: 3600
+    
