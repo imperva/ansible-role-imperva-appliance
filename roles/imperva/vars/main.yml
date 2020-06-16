@@ -1,7 +1,6 @@
 ---
 # vars file for imperva
-imperva_major_version: '14.0.0'
-imperva_var_freespace_gb: '28'
-SeS_expected_patch_version: '12.0.0.80_0' #you can gather this from an upgraded system using impctl --version  This should be the set to the highest patch level of the old version BEFORE an upgrade.
-expected_patch_file: 'SecureSphereV12.0.0-x86_64-Patch80_0.x'
+imperva_var_freespace_gb: '60'  #Imperva documentation recommends you have 60GB of free space on your var partition before an upgrade
+SeS_expected_patch_version: '12.5.0.100_1' #If the system matches this, DON'T apply the patch. You can gather this from an upgraded system using impctl --version  This should be the set to the highest patch level of the old version BEFORE an upgrade.
+expected_patch_file: 'SecureSphereV12.5.0-x86_64-Patch110_0.x' #This is the patch file to apply from your files/imperva_packages directory if the version doesn't match above.
 patch_timeout: '2400'
