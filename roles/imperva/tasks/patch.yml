@@ -33,6 +33,8 @@
   - name: Run installer
     command: "/var/tmp/{{ expected_patch_file }}"
     register: patch_output
+    environment:
+       SERVER_HOME: "/opt/SecureSphere/server"
     vars:
        ansible_command_timeout: "{{patch_timeout}}"
   
