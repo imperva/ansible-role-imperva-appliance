@@ -34,6 +34,6 @@ passwd ansible
 
 From the project directory, you can test by running:
 
-ansible-playbook -i inventories/default/hosts -u ansible --extra-vars "ansible_sudo_pass=Webco123 ansible_password=Webco123 ansible_become_method=su ansible_become_pass=Webco123" -vvv site.yml
+ansible-playbook -i inventories/default/hosts -u ansible --extra-vars "ansible_sudo_pass=your_password ansible_password=your_password ansible_become_method=su ansible_become_pass=your_password" -vvv site.yml
 
 Edit the inventories/default/hosts file to include the IP or name of your MX for testing.
