@@ -1,6 +1,6 @@
 --I ran ansible fact gathering against my MX running on VMware.  This is just here for dev reference. 
 
-ansible -i inventories/default/hosts 192.168.2.5 -u ansible --extra-vars "ansible_sudo_pass=Webco123 ansible_password=Webco123 ansible_become_method=su ansible_become_pass=Webco123" -m setup
+ansible -i inventories/default/hosts 192.168.2.5 -u ansible --extra-vars "ansible_sudo_pass=your_password ansible_password=your_password ansible_become_method=su ansible_become_pass=your_password" -m setup
 192.168.2.5 | SUCCESS => {
     "ansible_facts": {
         "ansible_all_ipv4_addresses": [
